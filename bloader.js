@@ -64,9 +64,11 @@
 
             progress = +progress || 0;
 
-            if (progress > _progress) {
+            // if (progress > _progress) {
                 _progress = progress;
-            }
+            // }
+
+            document.getElementById('loading-bar').style.width = _progress + '%';
 
             return _progress;
         };
@@ -103,7 +105,9 @@
             }
 
             _set(_progress + add);
-            setTimeout(_increment, 250);
+            setTimeout(function () {
+                _increment();
+            }, 250);
 
             return _progress;
         };
