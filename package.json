@@ -1,0 +1,9 @@
+{
+    "name": "bloader",
+    "version": "0.0.1",
+    "scripts": {
+        "test": "mocha test/tests.js -R spec"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}
