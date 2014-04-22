@@ -1,9 +1,9 @@
-[![Build Status](https://api.travis-ci.com/Wisembly/BalloonPushServer.png?token=mhvKGxh8Q7y6RgpJEqek)](http://travis-ci.com/Wisembly/BalloonPushServer)
+[![Build Status](https://api.travis-ci.org/Wisembly/bloader.js.svg)](http://travis-ci.org/Wisembly/bloader.js)
 
 # Bloader
 
 ## Test
-To launch the test suite
+To run the test suite
 ````
     npm test
 ````
