@@ -103,7 +103,7 @@
             }
 
             _set(_progress + add);
-            window.setTimeout(_increment, 250);
+            setTimeout(_increment, 250);
 
             return _progress;
         };
@@ -134,7 +134,7 @@
             // @TODO Set the status in the dom
             _status = status;
             if ('completed' === status)
-                window.setTimeout(_setStatus, 2000);
+                setTimeout(_setStatus, 2000);
 
             return _status;
         };

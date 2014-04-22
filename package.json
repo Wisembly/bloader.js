@@ -2,8 +2,14 @@
     "name": "bloader",
     "version": "0.0.1",
     "scripts": {
-        "test": "mocha test/tests.js -R spec"
+        "test": "mocha test/test.js -R spec"
     },
     "dependencies": {},
-    "devDependencies": {}
+    "devDependencies": {
+        "phantomjs": "*",
+        "mocha-phantomjs": "*",
+        "mocha": "*",
+        "expect.js": "*",
+        "sinon": "*"
+    }
 }
