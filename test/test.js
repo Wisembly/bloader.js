@@ -7,10 +7,11 @@
         bloader = require('../bloader');
 
     describe('Bloader.js', function () {
-        describe('First test', function () {
-            it('should pass', function () {
+        describe('Instanciation', function () {
+            it('should expose the loader into the window object', function () {
                 expect(true).to.be(true);
                 expect(window.Bloader).to.be.an('object');
+                expect(window.Bloader.progress).to.be.a('function');
             });
         });
     });

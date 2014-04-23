@@ -14,12 +14,12 @@
 
     Bloader.progress = function () {
         var _start,
+            _startListening,
             _complete,
             _set,
             _increment,
             _hasStarted,
             _setStatus,
-            _supportTransition,
             _el,
             _progress = 0,
             _status,
@@ -39,6 +39,19 @@
         };
 
         /**
+         * Starts listening to events in the `bloader` namespace
+         *
+         * bloader:start to start the loader
+         * bloader:complete to complete the loader
+         */
+        _startListening = function () {
+            var addEvent = window.addEventListener || window.attachEvent;
+            addEvent('bloader:start', _start);
+            // addEvent('bloader:set', _set);
+            addEvent('bloader:complete', _complete);
+        };
+
+        /**
          * Completes the loading bar
          * To be triggered when the load is done
          *
@@ -46,7 +59,7 @@
          */
         _complete = function () {
             if (!_hasStarted())
-                return;
+                return 0;
 
             _set(100);
             _setStatus('completed');
@@ -86,7 +99,7 @@
          */
         _increment = function () {
             if (!_hasStarted())
-                return;
+                return 0;
 
             var add = 0;
 
@@ -149,6 +162,9 @@
 
             return _status;
         };
+
+        // Starts listening
+        _startListening();
 
         return {
             start: _start,
