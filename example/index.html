@@ -5,14 +5,15 @@
     <script type='text/javascript' src='../bloader.js'></script>
 </head>
 <body>
-    <div id='loading-bar'>
-        <div class='peg'></div>
-    </div>
+    <div id='loading-bar'></div>
+
+    <p id='start'>Start</p>
+    <p id='complete'>Complete</p>
 
     <script type="text/javascript">
         var progress = window.Bloader.progress();
-        progress.start();
-        setTimeout(progress.complete, 6000);
+        document.getElementById('start').addEventListener('click', progress.start);
+        document.getElementById('complete').addEventListener('click', progress.complete);
     </script>
 </body>
 </html>

@@ -19,7 +19,9 @@
             _increment,
             _hasStarted,
             _setStatus,
-            _progress,
+            _supportTransition,
+            _el,
+            _progress = 0,
             _status,
             _timeout;
 
@@ -30,6 +32,7 @@
             // Append the bar in the DOM?
             if (_hasStarted())
                 return;
+            _el = document.getElementById('loading-bar');
             _setStatus('started');
             _set(1);
             _increment();
@@ -59,7 +62,7 @@
          */
         _set = function (progress) {
             console.log('Set: ' + progress + '%');
-            if (!_hasStarted())
+            if (!_hasStarted() && 0 !== progress)
                 return 0;
 
             progress = +progress || 0;
@@ -68,7 +71,7 @@
                 _progress = progress;
             // }
 
-            document.getElementById('loading-bar').style.width = _progress + '%';
+            _el.style.width = _progress + '%';
 
             return _progress;
         };
@@ -129,16 +132,20 @@
          * null       Nothing is happening
          * started    The progress bar is on its way
          * completed  The progress bar has just ended
-         *            It stays to `completed` for 2000 milliseconds before going back to null
+         *            It stays to `completed` for 1000 milliseconds before going back to null
          *
          * @return {String} current status
          */
         _setStatus = function (status) {
             status = status || null;
-            // @TODO Set the status in the dom
             _status = status;
+            _el.setAttribute('data-status', _status);
             if ('completed' === status)
-                setTimeout(_setStatus, 2000);
+                setTimeout(function () {
+                    _setStatus('ended');
+                }, 1000);
+            if ('ended' === status)
+                _set(0);
 
             return _status;
         };
