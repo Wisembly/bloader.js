@@ -10,6 +10,12 @@
         "mocha-phantomjs": "*",
         "mocha": "*",
         "expect.js": "*",
-        "sinon": "*"
+        "sinon": "*",
+        "gulp": "*",
+        "gulp-uglify": "*",
+        "gulp-concat": "*",
+        "gulp-minify-css": "*",
+        "gulp-notify": "*",
+        "gulp-rename": "*"
     }
 }
