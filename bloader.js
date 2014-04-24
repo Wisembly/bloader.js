@@ -12,9 +12,39 @@
 
     var Bloader = window.Bloader = {};
 
+    Bloader.instances = {};
+
+    /**
+     * Sets an instance
+     * Not exposed to the user
+     *
+     * @param {String} namespace
+     * @param {Object} instance
+     *
+     * @return {Object} instance
+     */
+    var _setInstance = function (namespace, instance) {
+        Bloader.instances[namespace] = instance;
+
+        return instance;
+    };
+
+    /**
+     * Gets an instance
+     * If the requested instance doesn't exist, it creates a new one
+     *
+     * @param  {String} namespace
+     * @return {Object} instance
+     */
+    Bloader.getInstance = function (namespace) {
+        if (Bloader.instances[namespace])
+            return Bloader.instances[namespace];
+
+        return _setInstance(namespace, new Bloader.progress());
+    };
+
     Bloader.progress = function () {
         var _start,
-            _startListening,
             _complete,
             _set,
             _increment,
@@ -36,19 +66,6 @@
             _setStatus('started');
             _set(1);
             _increment();
-        };
-
-        /**
-         * Starts listening to events in the `bloader` namespace
-         *
-         * bloader:start to start the loader
-         * bloader:complete to complete the loader
-         */
-        _startListening = function () {
-            var addEvent = window.addEventListener || window.attachEvent;
-            addEvent('bloader:start', _start);
-            // addEvent('bloader:set', _set);
-            addEvent('bloader:complete', _complete);
         };
 
         /**
@@ -162,9 +179,6 @@
 
             return _status;
         };
-
-        // Starts listening
-        _startListening();
 
         return {
             start: _start,
