@@ -8,6 +8,7 @@
     "devDependencies": {
         "karma": "*",
         "karma-jasmine": "*",
+        "karma-sinon-expect": "*",
         "karma-detect-browsers": "*",
         "karma-chrome-launcher": "*",
         "karma-firefox-launcher": "*",
