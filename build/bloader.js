@@ -34,16 +34,19 @@
      * If the requested instance doesn't exist, it creates a new one
      *
      * @param  {String} namespace
+     * @param  {Object} config
      * @return {Object} instance
      */
-    Bloader.getInstance = function (namespace) {
+    Bloader.getInstance = function (namespace, config) {
+        config = config || {};
+
         if (Bloader.instances[namespace])
             return Bloader.instances[namespace];
 
-        return _setInstance(namespace, new Bloader.progress());
+        return _setInstance(namespace, new Bloader.progress(config));
     };
 
-    Bloader.progress = function () {
+    Bloader.progress = function (config) {
         var _start,
             _complete,
             _set,
@@ -52,7 +55,10 @@
             _hasStarted,
             _setStatus,
             _getStatus,
+            _setConfig,
+            _getConfig,
             _el,
+            _config = {},
             _progress = 0,
             _status = null,
             _timeout;
@@ -64,12 +70,13 @@
             // Append the bar in the DOM?
             if (_hasStarted())
                 return;
-            _el = document.getElementById('loading-bar');
+            _el = document.getElementById(_config.el);
             if (!_el)
                 return;
             _setStatus('started');
             _set(1);
-            _increment();
+            if (_config.autoIncrement)
+                _increment();
         };
 
         /**
@@ -158,6 +165,33 @@
         };
 
         /**
+         * Sets a new config
+         *
+         * el            {String}   id of the loading bar
+         * autoIncrement {Boolean}  auto increments the loading bar
+         *
+         * @param {Object} config
+         */
+        _setConfig = function (config) {
+            config = {
+                el: config.el || 'loading-bar',
+                autoIncrement: false !== config.autoIncrement
+            };
+
+            _config = config;
+            return _config;
+        };
+
+        /**
+         * Returns the current config
+         *
+         * @return {Object} config
+         */
+        _getConfig = function () {
+            return _config;
+        };
+
+        /**
          * Is the loading bar currently active?
          *
          * @return {Boolean}
@@ -202,12 +236,17 @@
             return _status;
         };
 
+        // Sets the config and its defaults
+        _config = _setConfig(config);
+
         return {
             start: _start,
             complete: _complete,
             set: _set,
             getProgress: _getProgress,
-            getStatus: _getStatus
+            getStatus: _getStatus,
+            setConfig: _setConfig,
+            getConfig: _getConfig
         };
     };
 }());

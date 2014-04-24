@@ -53,6 +53,25 @@ When you start the loader, it sets a ````data-status```` attribute to ````starte
 When you complete the loader, the progress goes to 100, the attribute ````data-status```` changes and becomes ````completed```` for a duration of 1 second.
 Then it becomes ````ended```` and the progress is set back to 0.
 
+## Configuration
+
+You have two ways of setting your own config
+````
+bloader.setConfig({ autoIncrement: false });
+````
+Or
+````
+var bloader = window.Bloader.getInstance('app:loading', { autoIncrement: false });
+````
+
+Default values are
+````
+{
+    el: 'loading-bar',     // ID of the loading bar
+    autoIncrement: true    // Auto increments the loading bar randomly
+}
+````
+
 ## Available methods
 
 * ````start````         to start the loader
@@ -60,6 +79,8 @@ Then it becomes ````ended```` and the progress is set back to 0.
 * ````complete````      to complete the loader, which sets the progress to 100
 * ````getStatus````     returns the current status. ````null````, ````started````, ````completed````, ````ended````
 * ````getProgress````   returns the current progress as a percentage (0..100)
+* ````setConfig````     sets a new config
+* ````getConfig````     returns the current config
 
 ## Build
 To build the scripts, please install locally gulp using, and then the packages.

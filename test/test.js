@@ -8,7 +8,7 @@
             });
         });
 
-        describe('Get instance', function () {
+        describe('General testing with autoIncrement', function () {
             var bloader, setAttributeSpy;
 
             before(function () {
@@ -85,6 +85,70 @@
 
                     done();
                 }, 1000);
+            });
+        });
+
+        describe('Config', function () {
+            var bloader, setAttributeSpy;
+
+            before(function () {
+                setAttributeSpy = sinon.spy();
+                document.getElementById = function () {
+                    return {
+                        style: {},
+                        setAttribute: setAttributeSpy
+                    };
+                };
+
+                bloader = window.Bloader.getInstance('tests:bloader:config');
+            });
+
+            it('should have the default config', function () {
+                var config = bloader.getConfig();
+                expect(config).to.be.an('object');
+                expect(config.el).to.be('loading-bar');
+                expect(config.autoIncrement).to.be(true);
+            });
+
+            it('should set a new config', function () {
+                var newConfig = {
+                    el: 'foo',
+                    autoIncrement: false
+                };
+
+                bloader.setConfig(newConfig);
+                expect(bloader.getConfig().el).to.be('foo');
+                expect(bloader.getConfig().autoIncrement).to.be(false);
+            });
+        });
+
+        describe('No autoIncrement', function () {
+            var bloader, setAttributeSpy;
+
+            before(function () {
+                setAttributeSpy = sinon.spy();
+                document.getElementById = function () {
+                    return {
+                        style: {},
+                        setAttribute: setAttributeSpy
+                    };
+                };
+
+                bloader = window.Bloader.getInstance('tests:bloader:noIncrement', { autoIncrement: false });
+            });
+
+            it('should start the loader, and make sure it\'s not auto incrementing', function (done) {
+                bloader.start();
+                expect(bloader.getStatus()).to.be('started');
+                setTimeout(function () {
+                    expect(bloader.getProgress()).to.be(1);
+                    done();
+                }, 300);
+            });
+
+            it('should be setting the progress', function () {
+                bloader.set(50);
+                expect(bloader.getProgress()).to.be(50);
             });
         });
     });
