@@ -27,7 +27,8 @@ module.exports = function(config) {
     autoWatch: false,
 
     // All the available browsers are launched by detectBrowsers
-    // browsers: ['Chrome', 'PhantomJS', 'Firefox', 'Safari', 'IE'],
+    // This is just a fallback
+    browsers: ['PhantomJS'],
 
     singleRun: true
   });
