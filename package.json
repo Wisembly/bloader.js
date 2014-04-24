@@ -7,7 +7,7 @@
     "dependencies": {},
     "devDependencies": {
         "karma": "*",
-        "karma-jasmine": "*",
+        "karma-mocha": "*",
         "karma-sinon-expect": "*",
         "karma-detect-browsers": "*",
         "karma-chrome-launcher": "*",

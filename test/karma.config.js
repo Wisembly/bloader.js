@@ -2,7 +2,7 @@ module.exports = function(config) {
   config.set({
     basePath: '../',
 
-    frameworks: ['jasmine', 'detectBrowsers'],
+    frameworks: ['mocha', 'sinon-expect', 'detectBrowsers'],
 
     detectBrowsers: {
       enabled: true,
