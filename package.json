@@ -2,14 +2,17 @@
     "name": "bloader",
     "version": "0.0.1",
     "scripts": {
-        "test": "mocha test/test.js -R spec"
+        "test": "./node_modules/karma/bin/karma start test/karma.config.js"
     },
     "dependencies": {},
     "devDependencies": {
-        "phantomjs": "*",
-        "mocha-phantomjs": "*",
-        "mocha": "*",
-        "expect.js": "*",
+        "karma": "*",
+        "karma-jasmine": "*",
+        "karma-chrome-launcher": "*",
+        "karma-firefox-launcher": "*",
+        "karma-safari-launcher": "*",
+        "karma-phantomjs-launcher": "*",
+        "karma-ie-launcher": "*",
         "sinon": "*",
         "gulp": "*",
         "gulp-uglify": "*",
