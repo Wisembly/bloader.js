@@ -48,11 +48,13 @@
             _complete,
             _set,
             _increment,
+            _getProgress,
             _hasStarted,
             _setStatus,
+            _getStatus,
             _el,
             _progress = 0,
-            _status,
+            _status = null,
             _timeout;
 
         /**
@@ -63,6 +65,8 @@
             if (_hasStarted())
                 return;
             _el = document.getElementById('loading-bar');
+            if (!_el)
+                return;
             _setStatus('started');
             _set(1);
             _increment();
@@ -91,7 +95,6 @@
          * @return {Number} _progress
          */
         _set = function (progress) {
-            console.log('Set: ' + progress + '%');
             if (!_hasStarted() && 0 !== progress)
                 return 0;
 
@@ -146,6 +149,15 @@
         };
 
         /**
+         * Returns the current progress
+         *
+         * @return {Number} _progress
+         */
+        _getProgress = function () {
+            return _progress;
+        };
+
+        /**
          * Is the loading bar currently active?
          *
          * @return {Boolean}
@@ -159,10 +171,11 @@
          *
          * Statuses are:
          *
-         * null       Nothing is happening
+         * null       Nothing happened yet
          * started    The progress bar is on its way
          * completed  The progress bar has just ended
-         *            It stays to `completed` for 1000 milliseconds before going back to null
+         *            It stays to `completed` for 1000 milliseconds before going to ended
+         * ended      The progress bar has ended and nothing is happening
          *
          * @return {String} current status
          */
@@ -180,10 +193,21 @@
             return _status;
         };
 
+        /**
+         * Returns the current status
+         *
+         * @return {String} _status
+         */
+        _getStatus = function () {
+            return _status;
+        };
+
         return {
             start: _start,
             complete: _complete,
-            set: _set
+            set: _set,
+            getProgress: _getProgress,
+            getStatus: _getStatus
         };
     };
 }());
