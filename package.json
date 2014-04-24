@@ -16,6 +16,8 @@
         "gulp-concat": "*",
         "gulp-minify-css": "*",
         "gulp-notify": "*",
+        "gulp-insert": "*",
+        "gulp-clean": "*",
         "gulp-rename": "*"
     }
 }
