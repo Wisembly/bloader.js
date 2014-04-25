@@ -173,6 +173,7 @@
          * @param {Object} config
          */
         _setConfig = function (config) {
+            config = config || {};
             config = {
                 el: config.el || 'loading-bar',
                 autoIncrement: false !== config.autoIncrement
