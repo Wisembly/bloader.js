@@ -168,6 +168,7 @@
          * Sets a new config
          *
          * el            {String}   id of the loading bar
+         * statusEl      {String}   id of the element you want the statuses on
          * autoIncrement {Boolean}  auto increments the loading bar
          *
          * @param {Object} config
@@ -176,6 +177,7 @@
             config = config || {};
             config = {
                 el: config.el || 'loading-bar',
+                statusEl: config.statusEl || 'loading-bar',
                 autoIncrement: false !== config.autoIncrement
             };
 
@@ -217,7 +219,9 @@
         _setStatus = function (status) {
             status = status || null;
             _status = status;
-            _el.setAttribute('data-status', _status);
+            var el = document.getElementById(_config.statusEl);
+            if (el)
+                el.setAttribute('data-status', _status);
             if ('completed' === status)
                 setTimeout(function () {
                     _setStatus('ended');

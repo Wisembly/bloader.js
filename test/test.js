@@ -107,17 +107,20 @@
                 var config = bloader.getConfig();
                 expect(config).to.be.an('object');
                 expect(config.el).to.be('loading-bar');
+                expect(config.statusEl).to.be('loading-bar');
                 expect(config.autoIncrement).to.be(true);
             });
 
             it('should set a new config', function () {
                 var newConfig = {
                     el: 'foo',
+                    statusEl: 'bar',
                     autoIncrement: false
                 };
 
                 bloader.setConfig(newConfig);
                 expect(bloader.getConfig().el).to.be('foo');
+                expect(bloader.getConfig().statusEl).to.be('bar');
                 expect(bloader.getConfig().autoIncrement).to.be(false);
             });
         });

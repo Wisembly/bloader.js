@@ -67,8 +67,9 @@ var bloader = window.Bloader.getInstance('app:loading', { autoIncrement: false }
 Default values are
 ````
 {
-    el: 'loading-bar',     // ID of the loading bar
-    autoIncrement: true    // Auto increments the loading bar randomly
+    el: 'loading-bar',        // ID of the loading bar
+    statusEl: 'loading-bar',  // ID of the element you want the statuses on
+    autoIncrement: true       // Auto increments the loading bar randomly
 }
 ````
 
