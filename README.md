@@ -86,20 +86,12 @@ Default values are
 ## Build
 To build the scripts, please install locally gulp using, and then the packages.
 ````
-npm install -g gulp
 npm install
 ````
 
 You're now able to run the build process, using
 ````
-// Launch all the builds
-gulp
-
-// Launch the CSS build
-gulp styles
-
-// Launch the JavaScripts build
-gulp scripts
+npm run-script build
 ````
 
 ## Test
