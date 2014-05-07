@@ -220,8 +220,10 @@
             status = status || null;
             _status = status;
             var el = document.getElementById(_config.statusEl);
-            if (el)
+            if (el) {
                 el.setAttribute('data-status', _status);
+                el.className = el.className; // forces reflow (IE)
+            }
             if ('completed' === status)
                 setTimeout(function () {
                     _setStatus('ended');
