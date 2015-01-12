@@ -2,6 +2,13 @@
 
 # Bloader
 
+Bloader is a simple javascript Youtube-like loader. It allows you to precisely
+indicate your users how a loading is going (by updating progress while your
+ressources are loading, scripts executing...) or simply give your users an
+impression of progress with the `autocomplete` option that would randomly make
+the loader progress until you tell it is over and to complete.
+
+
 ## Quick start
 To start using the loader, you can use the builds from the ````build/```` directory.
 You'll find both minified and raw versions of the code.
@@ -54,7 +61,6 @@ When you complete the loader, the progress goes to 100, the attribute ````data-s
 Then it becomes ````ended```` and the progress is set back to 0.
 
 ## Configuration
-
 You have two ways of setting your own config
 ````
 bloader.setConfig({ autoIncrement: false });
@@ -74,7 +80,6 @@ Default values are
 ````
 
 ## Available methods
-
 * ````start````         to start the loader
 * ````set````           to set the loader to a custom progress
 * ````complete````      to complete the loader, which sets the progress to 100
