@@ -1,0 +1,17 @@
+{
+  "name": "Bloader",
+  "version": "1.1",
+  "main": "bloader.js",
+  "ignore": [
+    "test",
+    "*.yml",
+    "*.md",
+    "gulpfile.js",
+    "package.json"
+  ],
+  "keywords": [
+    "loader",
+    "youtube",
+    "random"
+  ]
+}
